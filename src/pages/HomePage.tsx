@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Layout Components
 import MainHeader from '@/components/layout/MainHeader';
@@ -21,25 +21,25 @@ const featuredPlaylists = [
   {
     playlistId: '2',
     coverUrl: 'https://i.scdn.co/image/ab67706c0000da841c78494c2514397e596736a3',
-    title: 'Gian\'s Concert Hits',
+    title: 'Gian\\'s Concert Hits',
     description: 'The one and only superstar. Earplugs recommended.',
   },
   {
     playlistId: '3',
     coverUrl: 'https://i.scdn.co/image/ab67706f000000028833955e691882367c33e680',
-    title: 'Nobita\'s Naptime Lo-fi',
+    title: 'Nobita\\'s Naptime Lo-fi',
     description: 'Chill beats for studying, sleeping, or avoiding homework.',
   },
   {
     playlistId: '4',
     coverUrl: 'https://i.scdn.co/image/ab67706f0000000203a35a82e9cfb594b293375f',
-    title: 'Shizuka\'s Sweet Violin',
+    title: 'Shizuka\\'s Sweet Violin',
     description: 'Elegant and beautiful melodies for a peaceful afternoon.',
   },
    {
     playlistId: '5',
     coverUrl: 'https://i.scdn.co/image/ab67706f00000002bdeb1c36c1acb1c1a3a30373',
-    title: 'Suneo\'s Rich & Famous Mix',
+    title: 'Suneo\\'s Rich & Famous Mix',
     description: 'Only the most exclusive and expensive-sounding tracks.',
   },
 ];
@@ -67,10 +67,11 @@ const popularArtists = [
 
 const HomePage: React.FC = () => {
   console.log('HomePage loaded');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   return (
     <div className="relative flex h-screen w-full overflow-hidden bg-background text-foreground">
-      <LeftSidebar />
+      <LeftSidebar isCollapsed={isSidebarCollapsed} onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
       <div className="flex flex-1 flex-col">
         <MainHeader />
         {/* Main content area with independent scrolling */}
