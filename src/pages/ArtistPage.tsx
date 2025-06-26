@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Play, CheckCircle } from 'lucide-react';
 
 // Layout Components
@@ -76,7 +76,7 @@ const albums = [
     imageUrl: 'https://i.scdn.co/image/ab67616d0000b273d250933f0b22a0732387e350',
   },
   {
-    title: 'What\'s Going On?',
+    title: 'What\\'s Going On?',
     year: '2020',
     imageUrl: 'https://i.scdn.co/image/ab67616d0000b27341851217e91d84b23269b2d8',
   },
@@ -97,10 +97,11 @@ const singles = [
 
 const ArtistPage = () => {
   console.log('ArtistPage loaded');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   return (
     <div className="flex h-screen bg-background text-foreground overflow-hidden">
-      <LeftSidebar />
+      <LeftSidebar isCollapsed={isSidebarCollapsed} onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
       <div className="flex-1 flex flex-col">
         <MainHeader />
         <main className="flex-1 overflow-hidden">
@@ -145,7 +146,7 @@ const ArtistPage = () => {
                 <div className="flex flex-col">
                   {popularSongs.map((song) => (
                     <SongListItem key={song.title} {...song} />
-                  ))}
+                  ))}\
                 </div>
               </section>
 
@@ -163,7 +164,7 @@ const ArtistPage = () => {
                         </div>
                       </CardContent>
                     </Card>
-                  ))}
+                  ))}\
                 </div>
               </section>
 
@@ -181,7 +182,7 @@ const ArtistPage = () => {
                         </div>
                       </CardContent>
                     </Card>
-                  ))}
+                  ))}\
                 </div>
               </section>
 
