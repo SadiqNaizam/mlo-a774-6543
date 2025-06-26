@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -60,10 +60,11 @@ const followedArtists = [
 
 const LibraryPage = () => {
   console.log('LibraryPage loaded');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   return (
     <div className="flex h-screen bg-background text-foreground">
-      <LeftSidebar />
+      <LeftSidebar isCollapsed={isSidebarCollapsed} onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
       <div className="flex-1 flex flex-col h-screen">
         <MainHeader />
         <ScrollArea className="flex-1">
@@ -87,7 +88,7 @@ const LibraryPage = () => {
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
                   {userPlaylists.map((playlist) => (
                     <PlaylistCard key={playlist.playlistId} {...playlist} />
-                  ))}
+                  ))}\
                 </div>
               </TabsContent>
 
@@ -106,7 +107,7 @@ const LibraryPage = () => {
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
                    {followedArtists.map((artist) => (
                     <ArtistCard key={artist.name} {...artist} />
-                  ))}
+                  ))}\
                 </div>
               </TabsContent>
             </Tabs>
