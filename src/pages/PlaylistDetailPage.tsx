@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Play, Shuffle, Clock } from 'lucide-react';
 
 // Layout Components
@@ -68,10 +68,11 @@ const tracks = [
 
 const PlaylistDetailPage = () => {
   console.log('PlaylistDetailPage loaded');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   return (
     <div className="flex h-screen bg-background text-foreground">
-      <LeftSidebar />
+      <LeftSidebar isCollapsed={isSidebarCollapsed} onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <MainHeader />
         <ScrollArea className="flex-1">
@@ -136,7 +137,7 @@ const PlaylistDetailPage = () => {
                     album={track.album}
                     duration={track.duration}
                   />
-                ))}
+                ))}\
               </div>
             </div>
           </main>
