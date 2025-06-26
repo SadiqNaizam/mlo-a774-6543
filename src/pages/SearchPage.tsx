@@ -47,10 +47,11 @@ const placeholderAlbums = [
 const SearchPage = () => {
   console.log('SearchPage loaded');
   const [searchValue, setSearchValue] = useState('');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   return (
     <div className="flex h-screen bg-background text-foreground">
-      <LeftSidebar />
+      <LeftSidebar isCollapsed={isSidebarCollapsed} onToggle={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
       <div className="flex flex-1 flex-col">
         <MainHeader />
         <ScrollArea className="flex-1">
@@ -106,7 +107,7 @@ const SearchPage = () => {
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                     {placeholderArtists.map((artist) => (
                       <ArtistCard key={artist.id} {...artist} />
-                    ))}
+                    ))}\
                   </div>
                 </TabsContent>
                 
